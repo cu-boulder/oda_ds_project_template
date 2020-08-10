@@ -12,6 +12,7 @@ pandas = "*"
 pandas-profiling = "*"
 scikit-learn = "*"
 seaborn = "*"
+pandera = "*"
 
 [requires]
 python_version = "3.8"
