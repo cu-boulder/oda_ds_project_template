@@ -1,6 +1,6 @@
 # Cookiecutter for ODA Data Science Projects
 
-A custom cookiecutter template based on (cookiecutter-data-science)[https://drivendata.github.io/cookiecutter-data-science/]
+A custom cookiecutter template based on [cookiecutter-data-science](https://drivendata.github.io/cookiecutter-data-science/)
 
 
 ### Requirements to use the cookiecutter template:
