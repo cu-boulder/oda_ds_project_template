@@ -20,6 +20,6 @@ $ pip install cookiecutter
 -----------
 `cd` to the newly created project 
 
-Python
+Python<br>
 `cd code\python`
 run `pipenv install`
