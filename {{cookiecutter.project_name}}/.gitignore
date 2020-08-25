@@ -1,9 +1,6 @@
 # Data
-/data/**/*.csv
-/data/**/*.parquet
-/data/**/*.xlsx
-/data/**/*.json
-/data/**/*.txt
+/data/**/*.*
+!/data/**/*.gitkeep
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
