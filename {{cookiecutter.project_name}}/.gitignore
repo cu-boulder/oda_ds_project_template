@@ -1,6 +1,9 @@
 # Data
-/data/**/*
-
+/data/**/*.csv
+/data/**/*.parquet
+/data/**/*.xlsx
+/data/**/*.json
+/data/**/*.txt
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -78,9 +81,6 @@ target/
 
 # Jupyter NB Checkpoints
 .ipynb_checkpoints/
-
-# exclude data from source control by default
-/data/
 
 # Mac OS-specific storage files
 .DS_Store
