@@ -6,7 +6,17 @@ from jinja2 import Environment, FileSystemLoader
 
 test_data = pd.read_parquet(
     "/home/ulgu3559/oda-repos/yield-model/data/transformed/yield.parquet"
-)[::10]
+).filter(
+    items=[
+        "YEAR",
+        "RESIDENCY_STATUS",
+        "ETHNICITY",
+        "ADDRESS_REGION",
+        "PERSON_FAMILY_SIZE",
+        "PERSON_HS_RANK_PERCENTILE",
+        "DEPOSIT_PAID",
+    ]
+)
 
 template = Environment(
     loader=FileSystemLoader(Path("../../code/python/templates").resolve())
