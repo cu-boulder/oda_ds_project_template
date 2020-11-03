@@ -9375,9 +9375,15 @@
 
 <body>
     <div class=content>
-        {% for variable in variable_groups%}
+        <!-- {% for variable in variable_groups%}
         {{variable_groups[variable]}}
-        {% endfor %}
+        {% endfor %} -->
+        <div class=section-items>
+            {% for overview in overview_section%}
+            <p class=h4>{{partition_name}}</p>
+            {{overview}}
+            {% endfor %}
+        </div>
     </div>
 </body>
 

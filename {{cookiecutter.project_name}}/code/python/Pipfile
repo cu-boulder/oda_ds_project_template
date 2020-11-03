@@ -15,6 +15,7 @@ jupyter = "*"
 pandas-profiling = "*"
 beautifulsoup4 = "*"
 jinja2 = "*"
+rope = "*"
 
 [requires]
 python_version = "3.8"
