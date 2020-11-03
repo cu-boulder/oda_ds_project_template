@@ -9388,9 +9388,13 @@
                 <div class="row header"><a class=anchor-pos id=variables></a>
                     <h1 class=page-header>Variables</h1>
                 </div>
-                {% for partition in variables_section%}
-                <p class=h4>{{partition}}</p>
-                {{variables_section[partition]}}
+                {% for variable in variables_section%}
+                {% for year in variables_section[variable]%}
+                <div class="row header"><a class="anchor-pos anchor-pos-variable"></a>
+                    <p class=h4>{{year}}</p>
+                    {{variables_section[variable][year][0]}}
+                </div>
+                {% endfor %}
                 {% endfor %}
             </div>
         </div>

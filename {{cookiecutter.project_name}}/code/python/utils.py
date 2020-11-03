@@ -39,13 +39,11 @@ def eda_report_by_partition(df: pd.DataFrame, col_name: str):
             overview_section.setdefault(partition_name, []).extend(
                 dom.select("#overview-warnings")
             )
-            features = dom.select(".variable")
-            for feature in features:
-                # relies on the pandas profiling report structure
+            for feature in dom.select(".variable"):
                 feature_name = feature.div.p["title"]
-                variables_section.setdefault(partition_name, {}).setdefault(
-                    feature_name, []
-                ).extend(feature)
+                variables_section.setdefault(feature_name, {}).setdefault(
+                    partition_name, []
+                ).append(feature)
         with open("hello.html", "w") as fh:
             fh.write(
                 template.render(
