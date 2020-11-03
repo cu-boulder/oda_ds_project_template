@@ -9375,8 +9375,8 @@
 
 <body>
     <div class=content>
-        {% for n in variables_section%}
-        {{n}}
+        {% for variable in variable_groups%}
+        {{variable_groups[variable]}}
         {% endfor %}
     </div>
 </body>
