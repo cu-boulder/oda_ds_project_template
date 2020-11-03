@@ -27,15 +27,21 @@ def eda_report_by_partition(df: pd.DataFrame, partition: str) -> pd.DataFrame:
     if partition in df.columns:
         partitions = df.groupby(partition)
         variables_section = []
+        variable_groups = {k: None for k in df.columns}
         for group in partitions:
             partition_name = group[0]
             _ = pd.DataFrame(group[1]).reset_index()
             section_items = BeautifulSoup(
                 ProfileReport(_, minimal=True).to_html(), features="html.parser"
-            ).find_all("div", attrs={"class": "section-items"})
+            ).find_all("div", attrs={"class": "variable"})
             variables_section.extend(section_items)
+            for element in section_items:
+                variable_name = element.find("p", attrs={"class": "h4"})["title"]
+                variable_groups[variable_name] = element
+                # print(element)
+                # print(variable_name)
         with open("hello.html", "w") as fh:
-            fh.write(template.render(variables_section=variables_section))
+            fh.write(template.render(variables_section=variables_groups))
 
 
 eda_report_by_partition(test_data, "YEAR")
