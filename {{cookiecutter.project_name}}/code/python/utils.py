@@ -33,7 +33,10 @@ def eda_report_by_partition(df: pd.DataFrame, col_name: str) -> pd.DataFrame:
             doc = BeautifulSoup(
                 ProfileReport(_, minimal=True).to_html(), features="html.parser"
             )
-            overview_section.extend(doc.select("#overview-dataset_overview"))
+            overview_section.setdefault(partition_name, []).extend(
+                doc.select("#overview-dataset_overview")
+            )
+            # overview_section.extend(doc.select("#overview-dataset_overview"))
         # print(overview_section)
         # # variables_section.extend(section_items)
         # # print(section_items)
@@ -45,11 +48,7 @@ def eda_report_by_partition(df: pd.DataFrame, col_name: str) -> pd.DataFrame:
         #     variables_section[variable_name].append(element)
         # print(variables_section.keys)
         with open("hello.html", "w") as fh:
-            fh.write(
-                template.render(
-                    partition_name=partition_name, overview_section=overview_section
-                )
-            )
+            fh.write(template.render(overview_section=overview_section))
 
 
 eda_report_by_partition(test_data, "YEAR")

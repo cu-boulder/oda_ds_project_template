@@ -9380,8 +9380,8 @@
         {% endfor %} -->
         <div class=section-items>
             {% for overview in overview_section%}
-            <p class=h4>{{partition_name}}</p>
-            {{overview}}
+            <p class=h4>{{overview}}</p>
+            {{overview_section[overview][0]}}
             {% endfor %}
         </div>
     </div>
