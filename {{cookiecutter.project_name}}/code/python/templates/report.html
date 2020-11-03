@@ -9380,10 +9380,17 @@
                 <h1 class=page-header>Overview</h1>
             </div>
             <div class=section-items>
-                {% for overview in overview_section%}
-                <p class=h4>{{overview}}</p>
-                {{overview_section[overview][0]}}
-                {{overview_section[overview][1]}}
+                {% for partition in overview_section%}
+                <p class=h4>{{partition}}</p>
+                {{overview_section[partition][0]}}
+                {{overview_section[partition][1]}}
+                {% endfor %}
+                <div class="row header"><a class=anchor-pos id=variables></a>
+                    <h1 class=page-header>Variables</h1>
+                </div>
+                {% for partition in variables_section%}
+                <p class=h4>{{partition}}</p>
+                {{variables_section[partition]}}
                 {% endfor %}
             </div>
         </div>
