@@ -9381,9 +9381,11 @@
             </div>
             <div class=section-items>
                 {% for partition in overview_section%}
-                <p class=h4>{{partition}}</p>
-                {{overview_section[partition][0]}}
-                {{overview_section[partition][1]}}
+                <div class="row header"><a class="anchor-pos anchor-pos-variable"></a>
+                    <p class=h4>{{partition}}</p>
+                    {{overview_section[partition][0]}}
+                    {{overview_section[partition][1]}}
+                </div>
                 {% endfor %}
                 <div class="row header"><a class=anchor-pos id=variables></a>
                     <h1 class=page-header>Variables</h1>
