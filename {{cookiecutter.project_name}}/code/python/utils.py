@@ -6,7 +6,6 @@ from pathlib import Path
 from jinja2 import Environment, FileSystemLoader
 
 
-
 def get_report_template(template: str):
     """Gets a Jinja2 html template from the templates folder.
 
@@ -14,6 +13,7 @@ def get_report_template(template: str):
         template (str): Jinja2 html template
 
     """
+    print(Path("../../code/python/templates").resolve())
     return Environment(
         loader=FileSystemLoader(Path("../../code/python/templates").resolve())
     ).get_template(template)
@@ -28,7 +28,7 @@ def eda_report_by_partition(
         df (pd.DataFrame)
         partition (str): An existing column in the DataFrame which values should
         be used as partitions.
-        report_name (str, optional): The name of the html report. 
+        report_name (str, optional): The name of the html report.
         Defaults to "eda_report_by_partition".
 
     Raises:
