@@ -7,15 +7,14 @@ from jinja2 import Environment, FileSystemLoader
 
 
 def get_report_template(template: str):
-    """Gets a Jinja2 html template from the templates folder.
+    """Get a Jinja2 html template from the templates folder.
 
     Args:
         template (str): Jinja2 html template
 
     """
-    print(Path("../../code/python/templates").resolve())
     return Environment(
-        loader=FileSystemLoader(Path("../../code/python/templates").resolve())
+        loader=FileSystemLoader(Path(__file__).resolve().parents[0] / "templates")
     ).get_template(template)
 
 
@@ -55,7 +54,7 @@ def eda_report_by_partition(
                     partition_name, []
                 ).append(feature)
         # relies on the current project folder structure
-        out_path = Path("../../outputs/reports").resolve()
+        out_path = Path(__file__).resolve().parents[2] / "outputs/reports"
         template = get_report_template("eda_by_partition.html")
         with open(out_path / f"{report_name}.html", "w") as report:
             report.write(
