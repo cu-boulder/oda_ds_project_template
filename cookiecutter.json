@@ -3,6 +3,6 @@
     "description": "A short description of the project.",
     "_copy_without_render": [
         "*templates",
-        "*tests"
+        "code/python/tests"
     ]
 }
