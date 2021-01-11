@@ -16,3 +16,7 @@ def remove_test_files():
 
 def main():
     remove_test_files()
+
+
+if __name__ == "__main__":
+    main()
