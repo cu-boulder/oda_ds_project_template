@@ -5,6 +5,7 @@ import pandas as pd
 import pytest
 from pandas.util.testing import makeMixedDataFrame
 from pandas.testing import assert_frame_equal
+from great_expectations.exceptions import GreatExpectationsError
 
 
 # Ensures that the code in src can be run and accessed from the console:
@@ -48,6 +49,18 @@ def test_validate_expectations_suite_name_not_found():
     with pytest.raises(FileNotFoundError, match="The suite could not be found"):
 
         @validate_expectations(suite_name="mytestsuite.json")
+        def df():
+            return makeMixedDataFrame()
+
+        df()
+
+
+def test_validate_expectations_df_does_not_meet_expectations():
+    with pytest.raises(
+        GreatExpectationsError, match="The dataframe did not meet expectations"
+    ):
+
+        @validate_expectations(suite_name="person_status.json")
         def df():
             return makeMixedDataFrame()
 

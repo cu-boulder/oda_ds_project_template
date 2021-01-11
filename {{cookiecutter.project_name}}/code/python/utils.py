@@ -77,7 +77,7 @@ def eda_report_by_partition(
 
 def validate_expectations(
     suite_name: str,
-    expectations_dir: Path = Path(__file__).parents[1].resolve()
+    expectations_dir: Path = Path(__file__).parents[0].resolve()
     / "great_expectations/expectations",
 ) -> Callable:
     """Validate a Pandas DataFrame using a Great Expectations suite.
