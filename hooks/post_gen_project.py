@@ -1,12 +1,13 @@
 import logging
 from pathlib import Path
+import os
 
 logger = logging.getLogger(__name__)
 
 
 def remove_test_files():
     logger.info("Removing test files")
-    tests = Path("/code/python/tests")
+    tests = Path("code/python/tests").resolve()
     for f in tests.iterdir():
         print(f)
         print(type(f))
