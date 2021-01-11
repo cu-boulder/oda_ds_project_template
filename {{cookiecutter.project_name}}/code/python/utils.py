@@ -1,9 +1,15 @@
-import pandas as pd
-from pandas_profiling import ProfileReport
-from bs4 import BeautifulSoup
-from typing import Union
+import logging
+from functools import wraps
 from pathlib import Path
+from typing import Callable, Union
+
+import great_expectations as ge
+import pandas as pd
+from bs4 import BeautifulSoup
 from jinja2 import Environment, FileSystemLoader
+from pandas_profiling import ProfileReport
+
+logger = logging.getLogger(__name__)
 
 
 def get_report_template(template: str):
@@ -65,3 +71,49 @@ def eda_report_by_partition(
             )
     else:
         raise KeyError(f"{partition} is missing from columns")
+
+
+def validate_expectations(
+    suite_name: str,
+    expectations_dir: Path = Path(__file__).parents[1].resolve()
+    / "great_expectations/expectations",
+) -> Callable:
+    """Validate a Pandas DataFrame using a Great Expectations suite.
+    Args:
+        suite_name (str): A valid json Great Expectations suite
+        expectations_dir (Path, optional): Great Expectations folder location.
+        Defaults to Path(__file__).parents[1].resolve()/"great_expectations/expectations".
+    Returns:
+        Callable
+    """
+
+    def decorator(function: Callable):
+        @wraps(function)
+        def wrapper(*args, **kwargs):
+            df = function()
+            if not isinstance(df, pd.DataFrame):
+                raise ValueError(
+                    "The decorated function must return a Pandas DataFrame"
+                )
+            if suite_name is None:
+                raise ValueError("A suite name is required")
+            if not suite_name.endswith(".json"):
+                raise ValueError(
+                    "The suite name should be a valid json expectation suite"
+                )
+            suite_path = expectations_dir / suite_name
+            if not suite_path.exists():
+                raise FileNotFoundError("The suite could not be found")
+            validation_result = ge.from_pandas(df).validate(
+                expectation_suite=str(suite_path)
+            )
+            if not validation_result["success"]:
+                for result in validation_result["results"]:
+                    if not result["success"]:
+                        logger.error(msg=result["expectation_config"])
+                raise GreatExpectationsError("The dataframe did not meet expectations")
+            return df
+
+        return wrapper
+
+    return decorator
