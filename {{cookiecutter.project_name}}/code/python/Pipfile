@@ -17,6 +17,7 @@ beautifulsoup4 = "*"
 jinja2 = "*"
 rope = "*"
 great-expectations = "*"
+pytest = "*"
 
 [requires]
 python_version = "3.8"
