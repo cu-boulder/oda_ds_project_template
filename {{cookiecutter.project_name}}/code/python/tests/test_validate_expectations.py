@@ -14,9 +14,9 @@ from utils import validate_expectations
 
 
 def test_validate_expectations_non_df():
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match="must return a Pandas DataFrame$"):
 
-        @validate_expectations(suite_name="")
+        @validate_expectations(suite_name="person_status.json")
         def non_df():
             x = pd.DataFrame(
                 columns=[
