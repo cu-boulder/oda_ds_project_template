@@ -1,9 +1,9 @@
 import sys
 from pathlib import Path
 
-import numpy as np
 import pandas as pd
 import pytest
+from pandas.util.testing import makeMixedDataFrame
 from pandas.testing import assert_frame_equal
 
 # Ensures that the code in src can be run and accessed from the console:
@@ -18,33 +18,26 @@ def test_validate_expectations_non_df():
 
         @validate_expectations(suite_name="person_status.json")
         def non_df():
-            x = pd.DataFrame(
-                columns=[
-                    "person_id",
-                    "person_name",
-                    "person_created",
-                    "person_status",
-                    "status_timestamp",
-                ]
-            ).to_numpy()
+            return makeMixedDataFrame().to_numpy()
 
         non_df()
 
 
-def test_validate_expectations_suite_non_valid_suite_name():
+def test_validate_expectations_suite_name_is_not_valid():
     with pytest.raises(ValueError, match="valid json expectation suite$"):
 
         @validate_expectations(suite_name="")
         def df():
-            return pd.DataFrame(
-                {
-                    "person_id": pd.Series(
-                        ["17829292", "1782955657", "17829292"], dtype="string"
-                    ),
-                    "person_status": pd.Series(
-                        ["Applicant", "Inquiry", "Prospect"], dtype="string"
-                    ),
-                }
-            )
+            return makeMixedDataFrame()
+
+        df()
+
+
+def test_validate_expectations_suite_name_is_none():
+    with pytest.raises(ValueError, match="A suite name is required"):
+
+        @validate_expectations(suite_name=None)
+        def df():
+            return makeMixedDataFrame()
 
         df()
