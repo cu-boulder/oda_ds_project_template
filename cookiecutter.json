@@ -2,6 +2,7 @@
     "project_name": "project_name",
     "description": "A short description of the project.",
     "_copy_without_render": [
-        "*templates"
+        "*templates",
+        "*tests"
     ]
 }
