@@ -6,6 +6,7 @@ import pytest
 from pandas.util.testing import makeMixedDataFrame
 from pandas.testing import assert_frame_equal
 
+
 # Ensures that the code in src can be run and accessed from the console:
 # see importing sibling packages in Python
 sys.path.append(str(Path(__file__).parents[1].resolve()))
@@ -37,6 +38,16 @@ def test_validate_expectations_suite_name_is_none():
     with pytest.raises(ValueError, match="A suite name is required"):
 
         @validate_expectations(suite_name=None)
+        def df():
+            return makeMixedDataFrame()
+
+        df()
+
+
+def test_validate_expectations_suite_name_not_found():
+    with pytest.raises(FileNotFoundError, match="The suite could not be found"):
+
+        @validate_expectations(suite_name="mytestsuite.json")
         def df():
             return makeMixedDataFrame()
 
