@@ -3,11 +3,13 @@ from functools import wraps
 from pathlib import Path
 from typing import Callable, Union
 
-import great_expectations as ge
 import pandas as pd
 from bs4 import BeautifulSoup
+from great_expectations.exceptions import GreatExpectationsError
 from jinja2 import Environment, FileSystemLoader
 from pandas_profiling import ProfileReport
+
+import great_expectations as ge
 
 logger = logging.getLogger(__name__)
 
