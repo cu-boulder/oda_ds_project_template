@@ -6,12 +6,10 @@ logger = logging.getLogger(__name__)
 
 def remove_test_files():
     logger.info("Removing test files")
-    tests = Path("/code/python/tests")
-    [
-        f.unlink()
-        for f in tests.glob("*")
-        if f.is_file() and ".gitkeep" not in tests.stem
-    ]
+    tests = Path("{{cookiecutter.project_name}}/code/python/tests")
+    for f in tests.iterdir():
+        if f.is_file() and ".gitkeep" not in tests.stem:
+            f.unlink()
 
 
 def main():
