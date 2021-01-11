@@ -9,10 +9,8 @@ def remove_test_files():
     logger.info("Removing test files")
     tests = Path("code/python/tests").resolve()
     for f in tests.iterdir():
-        print(f)
-        print(type(f))
-        # if f.is_file():
-        #     f.unlink()
+        if f.is_file() and f.stem != ".gitkeep":
+            f.unlink()
 
 
 def main():
