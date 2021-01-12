@@ -13,8 +13,8 @@ def rm_non_gitkeep(path: Path):
 
 
 def main():
-    rm_non_gitkeep(Path(f"code/python/tests")
-    rm_non_gitkeep(Path(f"code/python/great_expectations/expectations")
+    rm_non_gitkeep(Path("code/python/tests"))
+    rm_non_gitkeep(Path("code/python/great_expectations/expectations"))
 
 
 if __name__ == "__main__":
