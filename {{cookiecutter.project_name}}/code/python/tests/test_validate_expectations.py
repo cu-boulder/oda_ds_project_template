@@ -14,7 +14,7 @@ sys.path.append(str(Path(__file__).parents[1].resolve()))
 
 from utils import validate_expectations
 
-
+# TODO: Use df as a fixture
 def test_validate_expectations_non_df():
     with pytest.raises(ValueError, match="must return a Pandas DataFrame$"):
 
@@ -85,4 +85,3 @@ def test_validate_expectations_df_does_not_get_modified():
     expected = df
 
     assert_frame_equal(result(), expected)
-
