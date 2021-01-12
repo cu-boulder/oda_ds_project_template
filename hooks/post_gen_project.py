@@ -1,9 +1,6 @@
 from pathlib import Path
 from typing import Literal
 
-logger = logging.getLogger(__name__)
-
-
 def rm_non_gitkeep(path: Path):
     if not path.is_dir():
         raise FileNotFoundError(f"{path} is not a valid directory")
