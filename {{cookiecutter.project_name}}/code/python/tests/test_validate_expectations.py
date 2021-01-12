@@ -65,3 +65,24 @@ def test_validate_expectations_df_does_not_meet_expectations():
             return makeMixedDataFrame()
 
         df()
+
+
+def test_validate_expectations_df_does_not_get_modified():
+    df = pd.DataFrame(
+        columns=[
+            "person_id",
+            "person_name",
+            "person_created",
+            "person_status",
+            "status_timestamp",
+        ]
+    )
+
+    @validate_expectations(suite_name="person_status.json")
+    def result():
+        return df
+
+    expected = df
+
+    assert_frame_equal(result(), expected)
+
