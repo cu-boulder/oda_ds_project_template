@@ -12,10 +12,12 @@ awswrangler = "*"
 scikit-learn = "*"
 autopep8 = "*"
 jupyter = "*"
-pandas-profiling = "*"
+pandas-profiling = "==2.8.0"
 beautifulsoup4 = "*"
 jinja2 = "*"
 rope = "*"
+great-expectations = "*"
+pytest = "*"
 
 [requires]
 python_version = "3.8"

@@ -1,0 +1,20 @@
+{
+    "data_asset_type": "Dataset",
+    "expectation_suite_name": "default",
+    "expectations": [
+        {
+            "expectation_type": "expect_table_columns_to_match_set",
+            "kwargs": {
+                "column_set": [
+                    "person_id",
+                    "person_name",
+                    "person_created",
+                    "person_status",
+                    "status_timestamp"
+                ]
+            },
+            "meta": {}
+        }
+    ],
+    "meta": {}
+}
