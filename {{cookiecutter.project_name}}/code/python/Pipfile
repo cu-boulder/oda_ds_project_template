@@ -18,6 +18,8 @@ jinja2 = "*"
 rope = "*"
 great-expectations = "*"
 pytest = "*"
+statsmodels = "*"
+pymc3 = "*"
 
 [requires]
 python_version = "3.8"
