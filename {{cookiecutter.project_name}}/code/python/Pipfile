@@ -20,6 +20,7 @@ great-expectations = "*"
 pytest = "*"
 statsmodels = "*"
 pymc3 = "*"
+paramiko = "*"
 
 [requires]
 python_version = "3.8"
