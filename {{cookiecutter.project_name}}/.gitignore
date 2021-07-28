@@ -90,6 +90,6 @@ target/
 .mypy_cache/
 
 #R and RStudio Specific Ignores
-Rproj.user
+.Rproj.user
 .RData
 .Rhistory
