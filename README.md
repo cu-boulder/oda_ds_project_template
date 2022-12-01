@@ -15,7 +15,7 @@ $ pip install cookiecutter
 ### To start a new project, run:
 -----------
 
-`cookiecutter git@github.com:cu-boulder/oda_ds_project_template.git`
+`cookiecutter https://github.com/cu-boulder/oda_ds_project_template.git`
 
 -----------
 `cd` to the newly created project 
